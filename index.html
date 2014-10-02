@@ -5,12 +5,42 @@
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="quoteBook" ng-controller="mainCtrl">
+
+<div class="rghtside">
+    <ul>
+        <li ng-repeat="quote in quotes | filter: filterQuote">{{quote.text + " - " + quote.author}}</li>
+    </ul>
+
+</div><!--Ends rghtside-->
+
+<div class="lftside">
+    <div class="buttons">
+        <button class="button" ng-click="addAppear = !addAppear; hideAdd()">Add Quote</button>
+        <button class="button" ng-click="removeAppear = !removeAppear; hideRemove()">Remove Quote</button>
+        <button class="button" ng-click="searchAppear = !searchAppear; hideSearch()">Search Quotes</button>
+    </div>
+
+    <div class="table">
+        <div class="table2" ng-show="addAppear">
+            <input class="input" placeholder="Enter Quote Here" ng-model="addQuoteText" />
+            <input class="input" placeholder="Enter Author Here" ng-model="addAuthorText" /><br>
+            <button ng-click="addData()"> Add Quote</button>
+        </div>
+
+        <div class="table2" ng-show="removeAppear">
+            <input class="input" placeholder="Enter Quote Text" ng-model="removeQuote"/><br>
+            <button ng-click="removeData()">Remove Quote</button>
+        </div>
+
+        <div class="table2" ng-show="searchAppear">
+            <input class="input" placeholder="Search Quotes" ng-model="filterQuote"/><br>
+        </div>
+
+    </div><!--Closes table-->
+
+</div><!--Ends lftside-->
+
 <script src='http://code.angularjs.org/1.1.5/angular.js' type='text/javascript'></script>
-
-<ul>
-    <li ng-repeat="quote in quotes">{{quote.text}}<br>{{quote.author}}</li>
-</ul>
-
 <script src="js/app.js"></script>
 <script src="js/mainCtrl.js"></script>
 <script src="js/dataService.js"></script>

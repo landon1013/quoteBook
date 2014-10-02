@@ -22,9 +22,9 @@ app.service('dataService', function(){
         quotes.push(quote);
     };
 
-    this.removeData = function(quote){
+    this.removeData = function(remove){
         for (var i = 0; i < quotes.length; i++){
-            if (quotes[i] === quote) {
+            if (quotes[i].text.toLowerCase() === remove.toLowerCase()) {
                 quotes.splice(i, 1);
             }
         };
